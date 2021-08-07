@@ -1,0 +1,4 @@
+Access Specifiers:
+    Public: Accessible for within and outside the class
+    Protected: Within the class and any class that inherits it.
+    Private: Accessible from within the class only.
