@@ -1,8 +1,3 @@
-Access Specifiers:
-    Public: Accessible for within and outside the class
-    Protected: Within the class and any class that inherits it.
-    Private: Accessible from within the class only.
-
 Updating Migrations:
     Updating the model/schema of an entity without lossing the existing data.
     CMD: dotnet ef migrations add `MigrationName`
