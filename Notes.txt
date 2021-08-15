@@ -3,3 +3,6 @@ Updating Migrations:
     CMD: dotnet ef migrations add `MigrationName`
     To the update the DB
     CMD: dotnet ef database update.
+
+Droping DB:
+    dotnet ef database drop
