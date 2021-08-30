@@ -7,7 +7,7 @@ namespace API.DTOs
     public class MemberDto
     {
         public int Id { get; set; }
-        public string UserName { get    ; set; }
+        public string Username { get    ; set; }
         public DateTime DateOfBirth { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime LastActive { get; set; } = DateTime.Now;
