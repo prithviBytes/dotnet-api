@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using API.DTOs;
@@ -81,6 +82,21 @@ namespace API.Controllers
                 return CreatedAtRoute("GetUser",  new {username = user.UserName}, _mapper.Map<PhotoDto>(photo));
             } 
             return BadRequest("Problem Adding Photo");
+        }
+
+        [HttpPut("set-main-photo/{photoId}")]
+        public async Task<ActionResult> SetMainPhoto(int photoId)
+        {
+            var user = await _userRepository.GetUserByUsername(User.GetUsername());
+            var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+            if(photo.IsMain) return BadRequest("This is already a main photo");
+            var currentMainPhoto = user.Photos.FirstOrDefault(x => x.IsMain);
+            if(currentMainPhoto != null) currentMainPhoto.IsMain = false;
+            photo.IsMain = true;
+
+            if(await _userRepository.SaveAllAsync()) return NoContent();
+
+            return BadRequest("Failed to set main photo");
         }
     }
 }
